@@ -1,0 +1,32 @@
+name: "creat new rg practise"
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform_init_plan:
+   runs-on: self-hosted
+   
+   steps:
+     - name: My first step terraform_init_plan
+       run: echo First_Step
+     - name: Checkout
+       uses: actions/checkout@v5.0.0
+     - name: Azure Login
+       uses: Azure/login@v2.3.0
+       with:
+         subscription-id: 
+         client-id: 
+    
+    
+  
+  
