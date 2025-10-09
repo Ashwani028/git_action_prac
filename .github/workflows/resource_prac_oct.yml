@@ -48,7 +48,7 @@ jobs:
        run: terraform plan -no-color -input=false
        continue-on-error: true
 
-   terraform_init_plan:
+   terraform_init_apply:
     runs-on: self-hosted
 
      steps:
