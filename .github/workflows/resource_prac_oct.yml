@@ -28,7 +28,49 @@ jobs:
          subscription-id: "b7e2d3dd-2fa8-4498-90b2-8ed4b08e15ee"
          client-id:  "3976a2dd-67d3-4143-99ad-1a91bcccbbbb"
          tenant-id: "6780ca35-9ef2-4e3d-9abe-b26fab9e2ed1"
-    
-    
-  
+       
+     - name: Terraform fmt
+       working-directory: "./RG"
+       id: fmt
+       run: terraform fmt -check
+       continue-on-error: true
+     - name: Terraform Init
+       working-directory: "./RG"
+       id: init
+       run: terraform init -input=false
+     - name: Terraform Validate
+       working-directory: "./RG"
+       id: validate
+       run: terraform validate -no-color
+     - name: Terraform Plan
+       working-directory: "./RG"     
+       id: plan
+       run: terraform plan -no-color -input=false
+       continue-on-error: true
+
+   terraform_init_plan:
+    runs-on: self-hosted
+
+     steps:
+      - name: My first step terraform_init_plan
+        run: echo First_Step
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+         subscription-id: "b7e2d3dd-2fa8-4498-90b2-8ed4b08e15ee"
+         client-id:  "3976a2dd-67d3-4143-99ad-1a91bcccbbbb"
+         tenant-id: "6780ca35-9ef2-4e3d-9abe-b26fab9e2ed1"
+
+      - name: Terraform Init
+       working-directory: "./RG"
+        id: init
+        run: terraform init -input=false
+
+      - name: Terraform apply
+       working-directory: "./RG"
+        id: apply
+        run: terraform apply --auto-approve
+        continue-on-error: true
   
