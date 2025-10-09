@@ -46,10 +46,10 @@ jobs:
        run: terraform plan -no-color -input=false
        continue-on-error: true
 
-   terraform_init_apply:
-    runs-on: self-hosted
+  terraform_init_apply:
+   runs-on: self-hosted
 
-     steps:
+   steps:
       - name: My first step terraform_init_plan
         run: echo First_Step
       - name: Checkout
@@ -62,12 +62,12 @@ jobs:
          tenant-id: "6780ca35-9ef2-4e3d-9abe-b26fab9e2ed1"
 
       - name: Terraform Init
-       working-directory: "./RG"
+        working-directory: "./RG"
         id: init
         run: terraform init -input=false
 
       - name: Terraform apply
-       working-directory: "./RG"
+        working-directory: "./RG"
         id: apply
         run: terraform apply --auto-approve
         continue-on-error: true
